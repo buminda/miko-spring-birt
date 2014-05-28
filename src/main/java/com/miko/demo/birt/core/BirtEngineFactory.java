@@ -20,8 +20,11 @@ import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
- * User: miroslavkopecky
- * Date: 5/26/14
+ *
+ * @author miroslavkopecky
+ *         Date: 5/26/14
+ *         <p>
+ *         inspired: https://spring.io/blog/2012/01/30/spring-framework-birt
  */
 public class BirtEngineFactory implements FactoryBean<IReportEngine>, ApplicationContextAware, DisposableBean {
 
@@ -50,7 +53,7 @@ public class BirtEngineFactory implements FactoryBean<IReportEngine>, Applicatio
     }
 
     public void setLogDirectory(Resource resource) {
-        File f = null;
+        File f;
         try {
             f = resource.getFile();
             validateLogDirectory(f);
@@ -79,9 +82,6 @@ public class BirtEngineFactory implements FactoryBean<IReportEngine>, Applicatio
         EngineConfig config = new EngineConfig();
 
         //This line injects the Spring Context into the BIRT Context
-
-        logger.debug("GetOBject SPRING to Context");
-
         config.getAppContext().put("spring", context);
         config.setLogConfig(null != _resolvedDirectory ? _resolvedDirectory.getAbsolutePath() : null, logLevel);
         try {

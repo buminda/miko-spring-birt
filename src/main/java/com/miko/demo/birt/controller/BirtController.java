@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * Created with IntelliJ IDEA.
  * User: miroslavkopecky
  * Date: 5/23/14
+ *
+ * BirtView is used to run and render BIRT reports
+ *
  */
 @Controller
 @RequestMapping("/reports")
@@ -34,9 +37,6 @@ public class BirtController implements ApplicationContextAware {
     public BirtView testRequest(HttpServletRequest request, HttpServletResponse response){
 
         logger.debug("BIRT response");
-        logger.debug("BIRT test :)");
-
-        logger.debug("MV Created");
 
         return birtView();
     }
@@ -48,7 +48,6 @@ public class BirtController implements ApplicationContextAware {
 
         BirtView bv = new BirtView();
         bv.setReportFormatRequestParameter("ReportFormat");
-        //bv.setReportNameRequestParameter("ReportName");
         bv.setBirtEngine(engine().getObject());
         return bv;
     }
@@ -57,11 +56,8 @@ public class BirtController implements ApplicationContextAware {
     protected BirtEngineFactory engine(){
         BirtEngineFactory factory = new BirtEngineFactory() ;
         factory.setApplicationContext(context);
-        //factory.setLogLevel( Level.FINEST);
-        //factory.setLogDirectory ( new File ("c:/logs"));
-        //factory.setLogDirectory( new FileSystemResource("/logs"));
 
-        logger.debug("engine CALLED");
+        logger.debug("Birt Factor CALLED");
 
         return factory ;
     }

@@ -14,8 +14,12 @@ import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
- * User: miroslavkopecky
+ * @author miroslavkopecky
  * Date: 5/26/14
+ *
+ * BirtView is used to run and render BIRT reports
+ *
+ * inspired: https://spring.io/blog/2012/01/30/spring-framework-birt
  */
 public class BirtView  extends AbstractView {
 
@@ -33,32 +37,32 @@ public class BirtView  extends AbstractView {
 
     public void setReportFormatRequestParameter( String rf ){
         Assert.hasText( rf , "the report format parameter must not be null") ;
-        this.reportFormatRequestParameter = rf ;
+        reportFormatRequestParameter = rf ;
     }
 
     public void setReportNameRequestParameter ( String rn ) {
         Assert.hasText(rn, "the reportNameRequestParameter must not be null") ;
-        this.reportNameRequestParameter = rn ;
+        reportNameRequestParameter = rn ;
     }
 
     protected void renderMergedOutputModel(
             Map map, HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
-        String reportName = request.getParameter( this.reportNameRequestParameter );
-        String format = request.getParameter( this.reportFormatRequestParameter );
+        String reportName = request.getParameter( reportNameRequestParameter );
+        String format = request.getParameter( reportFormatRequestParameter );
         ServletContext sc = request.getSession().getServletContext();
         if( format == null ){
             format="html";
         }
 
-        IReportRunnable runnable = null;
+        IReportRunnable runnable;
         runnable = birtEngine.openReportDesign( sc.getRealPath("/Reports")+"/"+reportName );
         IRunAndRenderTask runAndRenderTask = birtEngine.createRunAndRenderTask(runnable);
         runAndRenderTask.setParameterValues(discoverAndSetParameters( runnable, request ));
 
         response.setContentType( birtEngine.getMIMEType( format ));
-        IRenderOption options =  null == this.renderOptions ? new RenderOption() : this.renderOptions;
+        IRenderOption options =  null == renderOptions ? new RenderOption() : renderOptions;
         if( format.equalsIgnoreCase("html")){
             HTMLRenderOption htmlOptions = new HTMLRenderOption( options);
             htmlOptions.setOutputFormat("html");
@@ -105,7 +109,7 @@ public class BirtView  extends AbstractView {
     }
     protected HashMap discoverAndSetParameters( IReportRunnable report, HttpServletRequest request ) throws Exception{
 
-        HashMap<String, Object> parms = new HashMap<String, Object>();
+        HashMap<String, Object> parms = new HashMap<>();
         IGetParameterDefinitionTask task = birtEngine.createGetParameterDefinitionTask( report );
 
         @SuppressWarnings("unchecked")
@@ -113,7 +117,7 @@ public class BirtView  extends AbstractView {
         Iterator<IParameterDefnBase> iter = params.iterator( );
         while ( iter.hasNext( ) )
         {
-            IParameterDefnBase param = (IParameterDefnBase) iter.next( );
+            IParameterDefnBase param = iter.next();
 
             IScalarParameterDefn scalar = (IScalarParameterDefn) param;
             if( request.getParameter(param.getName()) != null ){
@@ -192,12 +196,10 @@ public class BirtView  extends AbstractView {
 
         if ( request.getCharacterEncoding( ) == null )
         {
-            try
-            {
+            try{
                 request.setCharacterEncoding( UTF_8_ENCODE );
-            }
-            catch ( UnsupportedEncodingException e )
-            {
+            }catch ( UnsupportedEncodingException e ){
+
             }
         }
         return request.getParameter( parameterName );
