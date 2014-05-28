@@ -14,11 +14,9 @@ public interface NeoCarService {
 
     NCar findByMakeNeo(String make);
 
-    Car findByModel(String model);
+    NCar findByMakeFord();
 
-    NCar findByModelNeo(String model);
+    NCar findByModel(String model);
 
-    Car findByYear(String year);
-
-    NCar findByYearNeo(String year);
+    NCar findByYear(String year);
 }

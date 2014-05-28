@@ -188,7 +188,7 @@ neoService.findByMakeNeo('Chevrolet').getMake();</expression>
                             <structure>
                                 <property name="name">Column Binding</property>
                                 <expression name="expression" type="javascript">var neoService = spring.getBean("neoCarService");&#13;
-neoService.findByModelNeo('Corvette').getModel();</expression>
+neoService.findByModel('Corvette').getModel();</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -204,7 +204,7 @@ neoService.findByModelNeo('Corvette').getModel();</expression>
                             <structure>
                                 <property name="name">Column Binding</property>
                                 <expression name="expression" type="javascript">var neoService = spring.getBean("neoCarService");&#13;
-neoService.findByYearNeo('2000').getYear();</expression>
+neoService.findByYear('2000').getYear();</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -221,6 +221,22 @@ neoService.findByYearNeo('2000').getYear();</expression>
                                 <property name="name">Column Binding</property>
                                 <expression name="expression" type="javascript">var neoService = spring.getBean("neoCarService");&#13;
 neoService.findByMake('Dodge').toString();</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Column Binding</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="32">
+                <cell id="33">
+                    <data id="22">
+                        <property name="style">special-header</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Column Binding</property>
+                                <expression name="expression" type="javascript">var neoService = spring.getBean("neoCarService");&#13;
+neoService.findByMakeFord().toString();</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>

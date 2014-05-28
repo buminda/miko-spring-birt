@@ -52,19 +52,12 @@ public class NeoCarServiceImpl implements NeoCarService{
     }
 
     @Override
-    public Car findByModel(String model) {
-
-        List<NCar> cars = nCarEntityRepository.findByModel(model);
-
-        NCar nCar = cars.get(0);
-
-        Car result = new Car(nCar.getMake(), nCar.getModel(), nCar.getYear());
-
-        return result;
+    public NCar findByMakeFord() {
+        return nCarEntityRepository.findByMakeFord();
     }
 
     @Override
-    public NCar findByModelNeo(String model) {
+    public NCar findByModel(String model) {
 
         List<NCar> cars = nCarEntityRepository.findByModel(model);
 
@@ -72,19 +65,7 @@ public class NeoCarServiceImpl implements NeoCarService{
     }
 
     @Override
-    public Car findByYear(String year) {
-
-        List<NCar> cars = nCarEntityRepository.findByYear(year);
-
-        NCar nCar = cars.get(0);
-
-        Car result = new Car(nCar.getMake(), nCar.getModel(), nCar.getYear());
-
-        return result;
-    }
-
-    @Override
-    public NCar findByYearNeo(String year) {
+    public NCar findByYear(String year) {
 
         List<NCar> cars = nCarEntityRepository.findByYear(year);
 
