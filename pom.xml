@@ -350,7 +350,7 @@
     <properties>
 
         <!--java version-->
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <!--dependencies-->
         <spring.version>4.0.2.RELEASE</spring.version>
         <javax.servlet.version>2.5</javax.servlet.version>
