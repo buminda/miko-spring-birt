@@ -51,6 +51,7 @@ public class NeoCarInGarageTest implements NGarageConsts {
         garageList = (List)nGarageEntityRepository.save(garageList);
 
         for(NGarage garage: garageList){
+            logger.debug("AcreateNGarageTest garage = " + garage);
             Assert.notNull(garage.getId());
         }
 
@@ -76,8 +77,25 @@ public class NeoCarInGarageTest implements NGarageConsts {
         Iterator<NCar> nCarIterator = cars.iterator();
         int carNumber = 1;
 
-        NGarage tmpGarageOne = garages.iterator().next();
-        NGarage tmpGarageTwo = garages.iterator().next();
+        //Correctly assigned
+        Iterator<NGarage> nGarageIterator = garages.iterator();
+        NGarage tmpGarageOne = nGarageIterator.next();
+        NGarage tmpGarageTwo = nGarageIterator.next();
+        Assert.isTrue(tmpGarageOne.getName().equals(NGARAGE_ONE));
+        Assert.isTrue(tmpGarageTwo.getName().equals(NGARAGE_TWO));
+
+        logger.debug("CputCarsInGarageTest tmpGarageOne= " + tmpGarageOne);
+        logger.debug("CputCarsInGarageTest tmpGarageTwo= " + tmpGarageTwo );
+
+        //Iterrator Issue. Iterator over Collection has not been updated
+//        NGarage tmpGarageOne = garages.iterator().next();
+//        NGarage tmpGarageTwo = garages.iterator().next();
+//
+//        Assert.isTrue(tmpGarageOne.getName().equals(NGARAGE_ONE));
+//        logger.debug("CputCarsInGarageTest tmpGarageOne= " + tmpGarageOne);
+//        NGarage tmpGarageTwo = garages.iterator().next();
+//        logger.debug("CputCarsInGarageTest tmpGarageTwo= " + tmpGarageTwo);
+//        Assert.isTrue(tmpGarageTwo.getName().equals(NGARAGE_TWO));
 
         List<NCar> nCarsList = new ArrayList<>();
         List<NGarage> nGarageList = new ArrayList<>();
@@ -85,15 +103,25 @@ public class NeoCarInGarageTest implements NGarageConsts {
         while(nCarIterator.hasNext()){
             NCar tmpCar = nCarIterator.next();
             if(carNumber < 4){
+
+                logger.debug("CAR1 carNumber= " + carNumber + " tmpCar= " + tmpCar);
+                logger.debug("CAR1 tmpGarageOne= " + tmpGarageOne);
+
                 tmpCar.setGarage(tmpGarageOne);
                 tmpGarageOne.addCar(tmpCar);
                 nCarsList.add(tmpCar);
+//                nGarageEntityRepository.save(tmpGarageOne);
             }else{
+
+                logger.debug("CAR2 carNumber= " + carNumber + " tmpCar= " + tmpCar);
+                logger.debug("CAR2 tmpGarageOne= " + tmpGarageTwo);
+
                 tmpCar.setGarage(tmpGarageTwo);
                 tmpGarageTwo.addCar(tmpCar);
                 nCarsList.add(tmpCar);
+//                nGarageEntityRepository.save(tmpGarageTwo);
             }
-
+//            nCarEntityRepository.save(tmpCar);
             carNumber++;
         }
         nGarageList.add(tmpGarageOne);
