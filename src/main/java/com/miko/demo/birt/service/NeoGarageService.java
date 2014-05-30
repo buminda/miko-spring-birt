@@ -11,4 +11,6 @@ public interface NeoGarageService {
 
     NGarage findByName(String name);
 
+    int getCarNumberByName(String garageName);
+
 }

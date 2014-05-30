@@ -2,6 +2,7 @@ package com.miko.demo.birt.repository;
 
 import com.miko.demo.birt.model.NCar;
 import org.springframework.data.neo4j.annotation.Query;
+import org.springframework.data.neo4j.conversion.EndResult;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public interface NCarEntityRepository extends GraphRepository<NCar> {
 
     @Query("MATCH (ncar:NCar) WHERE ncar.make = 'Ford' return ncar")
     NCar findByMakeFord();
+
+    @Query("MATCH (ncar:NCar {make:'Ford'})<-[:located]-(garage) return ncar")
+    NCar findByMakeFordWithGarage();
 
     List<NCar> findByMake(String make);
 

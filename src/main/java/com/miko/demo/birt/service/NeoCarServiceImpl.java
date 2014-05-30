@@ -2,14 +2,19 @@ package com.miko.demo.birt.service;
 
 import com.miko.demo.birt.model.Car;
 import com.miko.demo.birt.model.NCar;
+import com.miko.demo.birt.model.NGarage;
 import com.miko.demo.birt.repository.NCarEntityRepository;
 import com.miko.demo.birt.repository.NGarageEntityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.conversion.EndResult;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,6 +60,16 @@ public class NeoCarServiceImpl implements NeoCarService{
     public NCar findByMakeFord() {
         return nCarEntityRepository.findByMakeFord();
     }
+
+    @Override
+    public NCar findByMakeForWithGarage() {
+
+        NCar car = nCarEntityRepository.findByMakeFordWithGarage();
+        car.setGarage(nGarageEntityRepository.findOne(car.getGarage().getId()));
+
+        return car;
+    }
+
 
     @Override
     public NCar findByModel(String model) {

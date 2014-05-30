@@ -1,6 +1,7 @@
 package com.miko.demo.birt.model;
 
 import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Labels;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +12,17 @@ public class AbstractNeoEntity {
 
     @GraphId
     private Long id;
+
+    @Labels
+    private String coreName;
+
+    public String getCoreName() {
+        return coreName;
+    }
+
+    public void setCoreName(String coreName) {
+        this.coreName = coreName;
+    }
 
     public Long getId() {
         return id;
