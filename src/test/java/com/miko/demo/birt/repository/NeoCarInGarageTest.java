@@ -42,7 +42,9 @@ public class NeoCarInGarageTest implements NGarageConsts {
     @Test
     public void AcreateNGarageTest(){
         NGarage nGarage1 = new NGarage(NGARAGE_ONE);
+        nGarage1.setCoreName("GARAGE");
         NGarage nGarage2 = new NGarage(NGARAGE_TWO);
+        nGarage2.setCoreName("GARAGE");
 
         List<NGarage> garageList = new ArrayList<>();
         garageList.add(nGarage1);

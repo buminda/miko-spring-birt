@@ -38,6 +38,8 @@ public interface NeoCarService {
 
     NCar findByMakeFord();
 
+    NCar findByMakeForWithGarage();
+
     NCar findByModel(String model);
 
     NCar findByYear(String year);

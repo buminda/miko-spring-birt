@@ -34,6 +34,12 @@
             3. BIRT Report with SpringService and Neo
         </a><br>
 
+        <a href="<c:url value="/reports">
+            <c:param name="ReportName" value="SampleNeoCarGarage.rptdesign"/>
+            </c:url>">
+            3. BIRT Report with SpringService and Neo: Car Ford and Garage
+        </a><br>
+
     </p>
     <%= new java.util.Date() %>
 

@@ -52,4 +52,9 @@ public class NeoGarageServiceImpl implements NeoGarageService {
 
         return garages.isEmpty() ? null : garages.get(0);
     }
+
+    @Override
+    public int getCarNumberByName(String garageName) {
+        return nGarageEntityRepository.getCarNumberByName(garageName);
+    }
 }

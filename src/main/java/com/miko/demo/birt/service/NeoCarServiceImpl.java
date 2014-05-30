@@ -33,6 +33,8 @@ import java.util.List;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * User: miroslavkopecky
@@ -77,6 +79,16 @@ public class NeoCarServiceImpl implements NeoCarService{
     public NCar findByMakeFord() {
         return nCarEntityRepository.findByMakeFord();
     }
+
+    @Override
+    public NCar findByMakeForWithGarage() {
+
+        NCar car = nCarEntityRepository.findByMakeFordWithGarage();
+        car.setGarage(nGarageEntityRepository.findOne(car.getGarage().getId()));
+
+        return car;
+    }
+
 
     @Override
     public NCar findByModel(String model) {

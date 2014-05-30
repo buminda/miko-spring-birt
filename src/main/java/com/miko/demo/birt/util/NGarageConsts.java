@@ -32,4 +32,6 @@ public interface NGarageConsts {
     String NGARAGE_ONE = "GarageOne";
     String NGARAGE_TWO = "GarageTwo";
 
+    String NGARAGE_CORE_NAME = "GARAGE";
+
 }
